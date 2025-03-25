@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title> inserire breve titolo</title>
+<meta  charset="utf-8" />
+</head>
+
+<body>
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personaggio Interattivo</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f8ff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+        
+        .personaggio-container {
+            text-align: center;
+        }
+        
+        .personaggio {
+            width: 200px;
+            height: 200px;
+            background-color: #ffcc99;
+            border-radius: 50%;
+            position: relative;
+            margin: 0 auto 20px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .personaggio:hover {
+            transform: scale(1.05);
+        }
+        
+        .occhi {
+            position: absolute;
+            top: 60px;
+            width: 100%;
+            display: flex;
+            justify-content: space-evenly;
+        }
+        
+        .occhio {
+            width: 30px;
+            height: 30px;
+            background-color: white;
+            border-radius: 50%;
+            position: relative;
+        }
+        
+        .pupilla {
+            width: 15px;
+            height: 15px;
+            background-color: black;
+            border-radius: 50%;
+            position: absolute;
+            top: 7px;
+            left: 7px;
+        }
+        
+        .bocca {
+            position: absolute;
+            bottom: 60px;
+            left: 70px;
+            width: 60px;
+            height: 30px;
+            border-bottom: 5px solid #333;
+            border-radius: 50%;
+        }
+        
+        .bocca.felice {
+            border-bottom: 5px solid #333;
+            border-top: none;
+            border-radius: 0 0 50% 50%;
+        }
+        
+        .bocca.triste {
+            border-top: 5px solid #333;
+            border-bottom: none;
+            border-radius: 50% 50% 0 0;
+        }
+        
+        .bocca.sorpresa {
+            width: 30px;
+            height: 30px;
+            border: 5px solid #333;
+            border-radius: 50%;
+            left: 85px;
+        }
+        
+        .istruzioni {
+            margin-top: 20px;
+            color: #555;
+        }
+        
+        .contatore {
+            margin-top: 10px;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="personaggio-container">
+        <div class="personaggio" id="personaggio">
+            <div class="occhi">
+                <div class="occhio">
+                    <div class="pupilla"></div>
+                </div>
+                <div class="occhio">
+                    <div class="pupilla"></div>
+                </div>
+            </div>
+            <div class="bocca felice" id="bocca"></div>
+        </div>
+        <div class="istruzioni">Clicca sul personaggio per cambiare la sua espressione!</div>
+        <div class="contatore">Espressione attuale: <span id="espressione">Felice</span></div>
+        <div class="contatore">Numero di click: <span id="contatore">0</span></div>
+    </div>
+
+    <script>
+        const personaggio = document.getElementById('personaggio');
+        const bocca = document.getElementById('bocca');
+        const espressioneText = document.getElementById('espressione');
+        const contatore = document.getElementById('contatore');
+        
+        let clickCount = 0;
+        let espressioneAttuale = 'felice';
+        const espressioni = ['felice', 'triste', 'sorpresa'];
+        const nomiEspressioni = ['Felice', 'Triste', 'Sorpresa'];
+        
+        personaggio.addEventListener('click', () => {
+            // Incrementa il contatore
+            clickCount++;
+            contatore.textContent = clickCount;
+            
+            // Cambia l'espressione
+            let nuovoIndice = espressioni.indexOf(espressioneAttuale) + 1;
+            if (nuovoIndice >= espressioni.length) {
+                nuovoIndice = 0;
+            }
+            
+            espressioneAttuale = espressioni[nuovoIndice];
+            espressioneText.textContent = nomiEspressioni[nuovoIndice];
+            
+            // Rimuovi tutte le classi
+            bocca.className = 'bocca';
+            // Aggiungi la classe dell'espressione attuale
+            bocca.classList.add(espressioneAttuale);
+        });
+    </script>
+</body>
+</html>
+
+</body>
+
+</html>

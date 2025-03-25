@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title> inserire breve titolo</title>
+<meta  charset="utf-8" />
+</head>
+
+<body>
+
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emoji Interattiva</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+        .emoji-container {
+            text-align: center;
+            user-select: none;
+        }
+        .emoji {
+            width: 250px;
+            height: 250px;
+            background-color: #FFD700;
+            border-radius: 50%;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .eyes {
+            display: flex;
+            justify-content: space-around;
+            padding-top: 70px;
+        }
+        .eye {
+            width: 40px;
+            height: 40px;
+            background-color: #000;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        .mouth {
+            position: absolute;
+            bottom: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 60px;
+            border-radius: 0 0 120px 120px;
+            transition: all 0.3s ease;
+        }
+        .status {
+            margin-top: 15px;
+            color: #666;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="emoji-container">
+        <div id="emoji" class="emoji">
+            <div class="eyes">
+                <div id="eyeLeft" class="eye"></div>
+                <div id="eyeRight" class="eye"></div>
+            </div>
+            <div id="mouth" class="mouth"></div>
+        </div>
+        <div id="status" class="status">Clicca per cambiare espressione</div>
+    </div>
+
+    <script>
+        const emoji = document.getElementById('emoji');
+        const mouth = document.getElementById('mouth');
+        const eyeLeft = document.getElementById('eyeLeft');
+        const eyeRight = document.getElementById('eyeRight');
+        const status = document.getElementById('status');
+
+        const expressions = [
+            {
+                name: "Felice",
+                backgroundColor: "#FFD700",
+                mouthStyle: {
+                    backgroundColor: "#000",
+                    height: "30px",
+                    borderRadius: "0 0 120px 120px",
+                    transform: "translateX(-50%) rotate(0deg)"
+                },
+                eyeStyle: {
+                    transform: "rotate(0deg)"
+                },
+                statusText: "Felice 😄"
+            },
+            {
+                name: "Triste",
+                backgroundColor: "#87CEEB",
+                mouthStyle: {
+                    backgroundColor: "#000",
+                    height: "20px",
+                    borderRadius: "120px 120px 0 0",
+                    transform: "translateX(-50%) rotate(180deg)"
+                },
+                eyeStyle: {
+                    transform: "rotate(10deg)"
+                },
+                statusText: "Triste 😢"
+            },
+            {
+                name: "Sorpreso",
+                backgroundColor: "#98FB98",
+                mouthStyle: {
+                    backgroundColor: "#000",
+                    height: "60px",
+                    borderRadius: "50%",
+                    transform: "translateX(-50%) scale(1.2)"
+                },
+                eyeStyle: {
+                    transform: "scale(1.2)"
+                },
+                statusText: "Sorpreso 😮"
+            },
+            {
+                name: "Arrabbiato",
+                backgroundColor: "#FF6347",
+                mouthStyle: {
+                    backgroundColor: "#000",
+                    height: "20px",
+                    borderRadius: "0",
+                    transform: "translateX(-50%) rotate(-15deg)"
+                },
+                eyeStyle: {
+                    transform: "rotate(-10deg)"
+                },
+                statusText: "Arrabbiato 😠"
+            }
+        ];
+
+        let currentIndex = 0;
+
+        emoji.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % expressions.length;
+            const currentExpression = expressions[currentIndex];
+
+            // Aggiorna lo sfondo
+            emoji.style.backgroundColor = currentExpression.backgroundColor;
+
+            // Aggiorna la bocca
+            Object.assign(mouth.style, currentExpression.mouthStyle);
+
+            // Aggiorna gli occhi
+            eyeLeft.style.transform = currentExpression.eyeStyle.transform;
+            eyeRight.style.transform = currentExpression.eyeStyle.transform;
+
+            // Aggiorna lo status
+            status.textContent = currentExpression.statusText;
+        });
+    </script>
+</body>
+</html>
+
+</body>
+
+</html>
